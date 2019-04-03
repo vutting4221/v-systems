@@ -1,6 +1,6 @@
 package vsys.contract
 
-import com.google.common.primitives.{Longs, Shorts, Chars}
+import com.google.common.primitives.{Longs, Shorts, Chars, Ints}
 import org.scalacheck.{Arbitrary, Gen}
 
 
@@ -13,9 +13,10 @@ trait DataStack {
     shortText <- Gen.const(DataEntry.create(desc.getBytes(), DataType.ShortText).right.get)
   } yield Seq(max, unit, shortText)
 
-  def issueDataStackGen(amount: Long): Gen[Seq[DataEntry]] = for {
+  def issueDataStackGen(amount: Long, tokenIndex: Int): Gen[Seq[DataEntry]] = for {
     max <- Gen.const(DataEntry(Longs.toByteArray(amount), DataType.Amount))
-  } yield Seq(max)
+    index <- Gen.const(DataEntry(Ints.toByteArray(tokenIndex), DataType.Amount))
+  } yield Seq(max, index)
 }
 
 object DataStack {
@@ -28,8 +29,8 @@ object DataStack {
 
   object issueInput {
     val amountIndex: Byte = 0
-    val issuerGetIndex: Byte = 1
-    val totalIndex: Byte = 2
+    val tokenIndex: Byte = 1
+    val issuerGetIndex: Byte = 2
   }
 
 }

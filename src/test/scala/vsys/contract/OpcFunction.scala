@@ -241,7 +241,7 @@ object ListOpc {
   val opcCDBVRGetIndex: Array[Byte] = Array(StateVar.issuer, DataStack.issueInput.issuerGetIndex)
   val opcAssertIsCallerOriginIndex: Array[Byte] = Array(DataStack.issueInput.issuerGetIndex)
   val opcTDBADepositIndex: Array[Byte] = Array(StateVar.max, StateVar.total,
-    DataStack.issueInput.issuerGetIndex, DataStack.issueInput.amountIndex, DataStack.issueInput.totalIndex)
+    DataStack.issueInput.issuerGetIndex, DataStack.issueInput.amountIndex, DataStack.issueInput.tokenIndex)
   val issueOpc: List[Array[Byte]] = List(OpcId.opcCDBVRGet, OpcId.opcAssertIsCallerOrigin, OpcId.opcTDBADeposit)
   val issueOpcIndex: List[Array[Byte]] = List(opcCDBVRGetIndex,opcAssertIsCallerOriginIndex, opcTDBADepositIndex)
 
